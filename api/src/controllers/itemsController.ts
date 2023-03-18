@@ -14,14 +14,14 @@ export const getItems = async (req: Request, res: Response) => {
 };
 
 export const addItem = async (req: Request, res: Response) => {
-    const { name, originalPrice, reducedPrice, description, image } = req.body;
+    const { name, originalPrice, reducedPrice, description, image, vendorId } = req.body;
 
-    if (!name || !name || !originalPrice || !reducedPrice || !description || !image) {
+    if (!name || !name || !originalPrice || !reducedPrice || !description || !image || !vendorId) {
         return res.status(400).json({ message: 'Invalid item data' });
     }
 
     try {
-        const newItem: Item = { name, originalPrice, reducedPrice, description, image, id: '' };
+        const newItem: Item = { name, originalPrice, reducedPrice, description, image, vendorId, id: '' };
         const docRef = await addItemToFirestore(newItem);
         newItem.id = docRef.id;
         res.status(201).json(newItem);

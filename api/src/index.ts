@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import itemsRoutes from './routes/itemsRoutes';
+import usersRoutes from './routes/usersRoutes';
 
 
 // Create Express app
@@ -16,6 +17,8 @@ app.get('/', (req, res) => {
 
 // Define routes for item manipulation
 app.use('/items', itemsRoutes);
+// Define routes for users
+app.use('/users', usersRoutes);
 
 // Start server
 app.listen(8000, () => {
