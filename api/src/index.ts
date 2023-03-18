@@ -1,19 +1,21 @@
 import express from 'express';
-import * as admin from 'firebase-admin';
+import cors from 'cors';
+import itemsRoutes from './routes/itemsRoutes';
 
-// Initialize Firebase Admin SDK
-const serviceAccount = require('../serviceAccountKey.json');
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-});
 
 // Create Express app
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 // Define routes
 app.get('/', (req, res) => {
     res.send('Hello, world!');
 });
+
+// Define routes for item manipulation
+app.use('/items', itemsRoutes);
 
 // Start server
 app.listen(8000, () => {
