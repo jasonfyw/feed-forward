@@ -7,7 +7,7 @@ const vendorsCollection = db.collection('vendors');
 const consumersCollection = db.collection('consumers');
 
 export const signUpUser = async (req: Request, res: Response) => {
-    const { name, email, roles, address } = req.body;
+    const { name, email, roles, address, id } = req.body;
 
     // Validate input data
     if (!name || !email || !roles || !address) {
@@ -16,9 +16,8 @@ export const signUpUser = async (req: Request, res: Response) => {
 
     try {
         // Create user in Firestore
-        const newUser: User = { name, email, roles, address, id:'' };
+        const newUser: User = { name, email, roles, address, id: id };
         const addedUser = await addUser(newUser);
-
         // Create vendor or consumer document based on user role
         if (roles.includes('vendor')) {
             await vendorsCollection.doc(addedUser.id).set({ name });

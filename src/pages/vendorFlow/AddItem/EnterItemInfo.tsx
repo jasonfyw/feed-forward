@@ -65,14 +65,14 @@ const EnterItemInfo = (props: EnterItemInfoProps) => {
                         <FormControl id="price1" isRequired>
                             <FormLabel fontWeight={600} mt={'20px'}>Original Price</FormLabel>
                             <NumberInput value={props.originalPrice || undefined} onChange={handlePrice1Change}>
-                                <NumberInputField name="price1" placeholder={'$7'}/>
+                                <NumberInputField name="price1" />
                             </NumberInput>
                         </FormControl>
 
                         <FormControl id="price2" isRequired>
                             <FormLabel fontWeight={600} mt={'20px'}>Discounted Price</FormLabel>
                             <NumberInput value={props.reducedPrice || undefined} onChange={handlePrice2Change}>
-                                <NumberInputField name="price2" placeholder={'$3'}/>
+                                <NumberInputField name="price2" />
                             </NumberInput>
                         </FormControl>
                     </Flex>

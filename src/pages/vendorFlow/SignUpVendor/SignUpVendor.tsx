@@ -38,7 +38,8 @@ const SignUpVendor = () => {
                     name: stateValues['name'],
                     email: stateValues['email'],
                     roles: ['vendor'],
-                    address: stateValues['address']
+                    address: stateValues['address'],
+                    id: userCredential.user.uid
                 })
             })
             .catch((error) => {

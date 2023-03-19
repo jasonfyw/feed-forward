@@ -54,7 +54,7 @@ export const addUser = async (user: User) => {
 
     // Create a new user document with a unique ID
     const newUserRef = await db.collection('users').doc();
-    const newUser = { ...user, id: newUserRef.id };
+    const newUser = { ...user, id: user['id'] };
     await newUserRef.set(newUser);
 
     return newUser;
@@ -74,14 +74,16 @@ export const getUsers = async () => {
 export const getUser = async (userId: string): Promise<User | null> => {
     try {
         // Fetch the user document from Firestore
-        const userDoc = await db.collection('users').doc(userId).get();
+        // const userDoc = await db.collection('users').doc(userId).get();
+        const querySnapshot = await db.collection('users').where('id', '==', userId).get();
 
         // If the user document doesn't exist, return null
-        if (!userDoc.exists) {
+        if (querySnapshot.empty) {
             return null;
         }
 
         // Return the user document data
+        const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data() as User;
         return { ...userData, id: userId };
     } catch (error) {

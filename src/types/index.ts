@@ -12,4 +12,5 @@ export interface ScannedItem {
     reducedPrice?: number;
     image?: string;
     key?: number;
+    vendorId?: string;
 }
