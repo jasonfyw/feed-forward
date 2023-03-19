@@ -1,6 +1,7 @@
-import { Box, Button, FormControl, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field } from '../../types';
+import { MainButton } from '../basicStyled';
 
 
 interface UserFormProps {
@@ -40,17 +41,26 @@ const UserForm = (props: UserFormProps) => {
     };
 
     return (
-        <Box borderWidth="1px" borderRadius="lg" p="6">
+        <Box borderRadius="lg">
             <form onSubmit={handleSubmit}>
                 <VStack spacing="4">
                     {props.fields.map((field) => (
                         <FormControl key={field.name} isRequired={field.required !== false}>
-                            <FormLabel>{field.label}</FormLabel>
-                            <Input type={field.name} name={field.name} value={props.stateValues[field.name]} onChange={handleChange} />
+                            <FormLabel fontWeight={600} fontSize={'14px'} mb={1}>{field.label}</FormLabel>
+                            <Input
+                                type={field.name}
+                                name={field.name}
+                                value={props.stateValues[field.name]}
+                                onChange={handleChange}
+                                bg={'gray.100'}
+                                border={'none'}
+                                borderRadius={'full'}
+                                fontWeight={600}
+                            />
                             {/* {props.errors[field.name] && <FormHelperText color="red.500">{props.errors[field.name]}</FormHelperText>} */}
                         </FormControl>
                     ))}
-                    <Button type="submit">{props.submitText}</Button>
+                    <MainButton type="submit">{props.submitText}</MainButton>
                 </VStack>
             </form>
         </Box>

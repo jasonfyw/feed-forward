@@ -10,10 +10,10 @@ import { Navigate } from "react-router-dom";
 import { StyledHeading } from "../../../components/basicStyled";
 
 
-const SignUpVendor = () => {
+const SignUpCustomer = () => {
     const [user, setUser] = useLocalStorage<any>('user', {})
     const toast = useToast()
-    
+
     const [stateValues, setStateValues] = useState({
         email: '',
         password: '',
@@ -24,39 +24,38 @@ const SignUpVendor = () => {
     const fields = [
         { name: 'email', label: 'Email' },
         { name: 'password', label: 'Password' },
-        { name: 'name', label: 'Name' },
-        { name: 'address', label: 'Address' },
+        { name: 'name', label: 'Name' }
     ];
 
     const handleSignUp = () => {
         createUserWithEmailAndPassword(auth, stateValues.email, stateValues.password)
             .then((userCredential) => {
                 // Signed in 
-                setUser({...userCredential.user, role: 'vendor'});
+                setUser({ ...userCredential.user, role: 'consumer' });
                 axios.post('http://127.0.0.1:8000/users/', {
                     // @ts-ignore
                     name: stateValues['name'],
                     email: stateValues['email'],
-                    roles: ['vendor'],
-                    address: stateValues['address']
+                    roles: ['consumer'],
+                    address: ''
                 })
             })
             .catch((error) => {
                 const errorMessage = error.message;
-                toast({ status: 'error', description: errorMessage})
+                toast({ status: 'error', description: errorMessage })
             });
     }
 
     return (
         <Container pt={['70px', 10]} px={5} h={'100vh'} >
             <StyledHeading pb={'8px'}>
-                Create a business account
+                Create an account
             </StyledHeading>
             {
                 Object.keys(user).length > 0 ? (
-                    <Navigate to='/vendor' />
+                    <Navigate to='/vedor' />
                 ) : (
-                    <UserForm 
+                    <UserForm
                         fields={fields}
                         stateValues={stateValues}
                         setStateValues={setStateValues}
@@ -70,4 +69,4 @@ const SignUpVendor = () => {
     );
 }
 
-export default SignUpVendor;
+export default SignUpCustomer;
