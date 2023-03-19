@@ -3,15 +3,16 @@ import React from 'react';
 import { Field } from '../../types';
 
 
-interface SignUpFormProps {
+interface UserFormProps {
     fields: Field[];
     stateValues: Record<string, string>;
     setStateValues: (r: any) => void;
     handleSubmit: () => void;
     // errors: string;
+    submitText: string
 }
 
-const SignUpForm = (props: SignUpFormProps) => {
+const UserForm = (props: UserFormProps) => {
     
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
@@ -49,11 +50,11 @@ const SignUpForm = (props: SignUpFormProps) => {
                             {/* {props.errors[field.name] && <FormHelperText color="red.500">{props.errors[field.name]}</FormHelperText>} */}
                         </FormControl>
                     ))}
-                    <Button type="submit">Sign up</Button>
+                    <Button type="submit">{props.submitText}</Button>
                 </VStack>
             </form>
         </Box>
     );
 }
 
-export default SignUpForm;
+export default UserForm;

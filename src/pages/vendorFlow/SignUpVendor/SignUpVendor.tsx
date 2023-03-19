@@ -1,11 +1,11 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Container, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import SignUpForm from '../../components/SignUpForm';
+import UserForm from '../../../components/UserForm';
 import { useLocalStorage } from "usehooks-ts";
 import axios from "axios";
 
-import { auth } from '../../firebase'
+import { auth } from '../../../firebase'
 import { Navigate } from "react-router-dom";
 
 
@@ -52,11 +52,12 @@ const SignUpVendor = () => {
                 Object.keys(user).length > 0 ? (
                     <Navigate to='/vendor' />
                 ) : (
-                    <SignUpForm 
+                    <UserForm 
                         fields={fields}
                         stateValues={stateValues}
                         setStateValues={setStateValues}
                         handleSubmit={handleSignUp}
+                        submitText={'Sign up'}
                     />
                 )
             }

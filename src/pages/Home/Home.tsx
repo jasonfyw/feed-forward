@@ -3,7 +3,7 @@ import React from 'react';
 
 const Home = () => {
     return (
-        <Container>
+        <Container bg='brand.100'>
             <Heading>
                 HTG Project
             </Heading>
