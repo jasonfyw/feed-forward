@@ -13,7 +13,7 @@ function AddItemSummary() {
     scannedItems.forEach(item => subtotal += (item.reducedPrice || 0))
 
     return (
-        <Container py={10} px={5} h={'100vh'} >
+        <Container pt={['70px', 10]} px={5} h={'100vh'} >
             <BackButton to={'/vendor'} />
             <StyledHeading pb={'8px'}>
                 Scan the items you are adding

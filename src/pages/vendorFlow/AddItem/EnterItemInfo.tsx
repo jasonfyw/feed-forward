@@ -44,7 +44,7 @@ const EnterItemInfo = (props: EnterItemInfoProps) => {
 
 
     return (
-        <Container py={10} px={5} h={'100vh'} >
+        <Container pt={['70px', 10]} px={5} h={'100vh'} >
             <StyledHeading pb={'8px'}>
                 Edit your item
             </StyledHeading>

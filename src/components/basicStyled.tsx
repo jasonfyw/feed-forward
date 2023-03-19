@@ -48,8 +48,8 @@ export const BackButton = ({ children, ...rest }: PropsWithChildren<basicStyledP
             size={'md'}
             fontSize={24}
             borderRadius={'full'}
-            top={10}
-            left={10}
+            top={[5, 10]}
+            left={[5, 10]}
             position={'fixed'}
             zIndex={1000}
             {...rest}
