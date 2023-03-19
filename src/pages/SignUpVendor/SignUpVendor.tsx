@@ -34,7 +34,7 @@ const SignUpVendor = () => {
                 setUser({...userCredential.user, role: 'vendor'});
                 axios.post('http://127.0.0.1:8000/users/', {
                     // @ts-ignore
-                    name: user['name'],
+                    name: stateValues['name'],
                     email: stateValues['email'],
                     roles: ['vendor'],
                     address: stateValues['address']

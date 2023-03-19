@@ -7,10 +7,10 @@ const vendorsCollection = db.collection('vendors');
 const consumersCollection = db.collection('consumers');
 
 export const signUpUser = async (req: Request, res: Response) => {
-    const { name, email, password, roles, address } = req.body;
+    const { name, email, roles, address } = req.body;
 
     // Validate input data
-    if (!name || !email || !password || !roles) {
+    if (!name || !email || !roles || !address) {
         return res.status(400).json({ message: 'Invalid user data' });
     }
 
