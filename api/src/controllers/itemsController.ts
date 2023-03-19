@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Item } from '../models';
-import { getItems as getItemsFromFirestore, addItem as addItemToFirestore } from '../services/firestoreService';
+import { getItems as getItemsFromFirestore, addItem as addItemToFirestore, db } from '../services/firestoreService';
 
 
 export const getItems = async (req: Request, res: Response) => {
@@ -30,3 +30,26 @@ export const addItem = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Error adding item' });
     }
 };
+
+export const addItems = async (req: Request, res: Response) => {
+    const { vendorId, items } = req.body as { vendorId: string, items: Item[] }
+
+    try {
+        const batch = db.batch();
+
+        // Add each item to the batch
+        items?.forEach(item => {
+            const newItemRef = db.collection('items').doc();
+            const newItem: Item = { ...item, id: newItemRef.id, vendorId: vendorId };
+            batch.set(newItemRef, newItem);
+        });
+
+        // Commit the batch
+        await batch.commit();
+
+        res.status(201).json({ message: 'Items added successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error adding items' });
+    }
+}

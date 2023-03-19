@@ -1,4 +1,4 @@
-import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, Container, useDisclosure, VStack } from '@chakra-ui/react';
+import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Container, useDisclosure, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { BackButton, MainButton, StyledHeading } from '../../../components/basicStyled';
 import OptionCard from '../../../components/OptionCard';
@@ -6,11 +6,27 @@ import { MdStore, MdList } from 'react-icons/md'
 import { FaTruck } from 'react-icons/fa'
 import { useLocalStorage } from 'usehooks-ts';
 import { ScannedItem } from '../../../types';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const AddItemDelivery = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef<HTMLButtonElement>(null)
-    const [scannedItems,] = useLocalStorage<ScannedItem[]>('scannedItems', [])
+    const [scannedItems, setScannedItems] = useLocalStorage<ScannedItem[]>('scannedItems', [])
+    const [user,] = useLocalStorage<any>('user', {})
+    const navigate = useNavigate()
+
+    const handleListItems = () => {
+        axios.post('http://127.0.0.1:8000/items/batch', {
+            items: scannedItems,
+            vendorId: user['uid']
+        }).then(() => {
+            setScannedItems([])
+            onOpen()
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 
     return (
         <Container py={10} px={5} h={'100vh'} >
@@ -66,8 +82,7 @@ const AddItemDelivery = () => {
             </VStack>
 
             <MainButton mt={'32px'} onClick={() => {
-                
-                onOpen()
+                handleListItems()
             }}>
                 Complete
             </MainButton>
@@ -84,19 +99,17 @@ const AddItemDelivery = () => {
                 <AlertDialogOverlay />
 
                 <AlertDialogContent borderRadius={'10px'}>
-                    <AlertDialogHeader>Discard Changes?</AlertDialogHeader>
+                    <AlertDialogHeader>Products successfully listed!</AlertDialogHeader>
                     <AlertDialogCloseButton />
                     <AlertDialogBody>
-                        Are you sure you want to discard all of your notes? 44 words will be
-                        deleted.
+                        The products have been successfully listed and are available to all customers
                     </AlertDialogBody>
                     <AlertDialogFooter>
-                        <Button ref={cancelRef} onClick={onClose}>
-                            No
-                        </Button>
-                        <Button colorScheme='red' ml={3}>
-                            Yes
-                        </Button>
+                        <MainButton onClick={() => {
+                            navigate('/vendor')
+                        }} >
+                            Return to dashboard
+                        </MainButton>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
