@@ -35,7 +35,7 @@ const LoginVendor = () => {
     return (
         <Container>
             {
-                Object.keys(user).length > 0 ? (
+                (Object.keys(user).length > 0) ? (
                     <Navigate to='/vendor' />
                 ) : (
                     <UserForm
