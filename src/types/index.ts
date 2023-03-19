@@ -3,3 +3,13 @@ export interface Field {
     label: string;
     required?: boolean; // add optional required prop
 }
+
+export interface ScannedItem {
+    name?: string;
+    description?: string;
+    quantity?: number;
+    originalPrice?: number;
+    reducedPrice?: number;
+    image?: string;
+    key?: number;
+}
