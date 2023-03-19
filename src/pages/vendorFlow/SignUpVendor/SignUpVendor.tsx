@@ -7,6 +7,7 @@ import axios from "axios";
 
 import { auth } from '../../../firebase'
 import { Navigate } from "react-router-dom";
+import { StyledHeading } from "../../../components/basicStyled";
 
 
 const SignUpVendor = () => {
@@ -47,7 +48,10 @@ const SignUpVendor = () => {
     }
 
     return (
-        <Container>
+        <Container pt={['70px', 10]} px={5} h={'100vh'} >
+            <StyledHeading pb={'8px'}>
+                Create a business account
+            </StyledHeading>
             {
                 Object.keys(user).length > 0 ? (
                     <Navigate to='/vendor' />

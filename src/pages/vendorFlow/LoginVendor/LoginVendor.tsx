@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Navigate } from 'react-router';
 import { useLocalStorage } from 'usehooks-ts';
+import { StyledHeading } from '../../../components/basicStyled';
 import UserForm from '../../../components/UserForm';
 import { auth } from '../../../firebase';
 
@@ -33,7 +34,10 @@ const LoginVendor = () => {
     }
 
     return (
-        <Container>
+        <Container pt={['70px', 10]} px={5} h={'100vh'} >
+            <StyledHeading pb={'8px'}>
+                Business Account Login
+            </StyledHeading>
             {
                 (Object.keys(user).length > 0) ? (
                     <Navigate to='/vendor' />
