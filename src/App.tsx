@@ -13,8 +13,15 @@ import Vendor from "./pages/vendorFlow/Vendor";
 import AddItem from "./pages/vendorFlow/AddItem";
 import AddItemSummary from "./pages/vendorFlow/AddItemSummary";
 import AddItemDelivery from "./pages/vendorFlow/AddItemDelivery";
+import { useLocalStorage } from "usehooks-ts";
 
 export const App = () => {
+    const [, setChakraUIColorMode] = useLocalStorage<string>('chakra-ui-color-mode', '')
+    React.useEffect(() => {
+        setChakraUIColorMode('light')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
         <ChakraProvider theme={theme}>
             {/* <ColorModeSwitcher/> */}

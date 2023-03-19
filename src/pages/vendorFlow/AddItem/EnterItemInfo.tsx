@@ -80,7 +80,7 @@ const EnterItemInfo = (props: EnterItemInfoProps) => {
                     <MainButton type="submit" mt={12} onClick={handleSubmit}>
                         Done editing
                     </MainButton>
-                    <Link to={'/vendor/additemlanding'}>
+                    <Link to={'/vendor/itemsummary'}>
                         <Button variant='ghost' w={'100%'} borderRadius={'full'} mt={2}>
                             Cancel
                         </Button>
