@@ -1,9 +1,18 @@
-import { Container } from '@chakra-ui/react';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Container, useToast } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import SignUpForm from '../../components/SignUpForm';
+import { useLocalStorage } from "usehooks-ts";
+import axios from "axios";
+
+import { auth } from '../../firebase'
+import { Navigate } from "react-router-dom";
 
 
 const SignUpVendor = () => {
+    const [user, setUser] = useLocalStorage<any>('user', {})
+    const toast = useToast()
+    
     const [stateValues, setStateValues] = useState({
         email: '',
         password: '',
@@ -19,17 +28,39 @@ const SignUpVendor = () => {
     ];
 
     const handleSignUp = () => {
-        console.log(stateValues)
+        createUserWithEmailAndPassword(auth, stateValues.email, stateValues.password)
+            .then((userCredential) => {
+                // Signed in 
+                setUser({...userCredential.user, role: 'vendor'});
+                axios.post('http://127.0.0.1:8000/users/', {
+                    // @ts-ignore
+                    name: user['name'],
+                    email: stateValues['email'],
+                    roles: ['vendor'],
+                    address: stateValues['address']
+                })
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                toast({ status: 'error', description: errorMessage})
+            });
     }
 
     return (
         <Container>
-            <SignUpForm 
-                fields={fields}
-                stateValues={stateValues}
-                setStateValues={setStateValues}
-                handleSubmit={handleSignUp}
-            />
+            {
+                Object.keys(user).length > 0 ? (
+                    <Navigate to='/vendor' />
+                ) : (
+                    <SignUpForm 
+                        fields={fields}
+                        stateValues={stateValues}
+                        setStateValues={setStateValues}
+                        handleSubmit={handleSignUp}
+                    />
+                )
+            }
+
         </Container>
     );
 }
