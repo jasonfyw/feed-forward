@@ -14,6 +14,7 @@ import AddItem from "./pages/vendorFlow/AddItem";
 import AddItemSummary from "./pages/vendorFlow/AddItemSummary";
 import AddItemDelivery from "./pages/vendorFlow/AddItemDelivery";
 import { useLocalStorage } from "usehooks-ts";
+import Navbar from "./components/Navbar";
 
 export const App = () => {
     const [, setChakraUIColorMode] = useLocalStorage<string>('chakra-ui-color-mode', '')
@@ -37,6 +38,7 @@ export const App = () => {
 
                     <Route path="/signout" element={<Logout />} />
                 </Routes>
+                <Navbar />
             </BrowserRouter>
 
         </ChakraProvider>
