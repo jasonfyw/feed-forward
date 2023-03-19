@@ -1,6 +1,5 @@
 import { Box, Center } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import { useLocalStorage } from 'usehooks-ts';
 import { BackButton, MainButton } from '../../../components/basicStyled';
@@ -47,9 +46,7 @@ const AddItem = () => {
 
     return (
         <>
-            <Link to={'/vendor/itemsummary'}>
-                <BackButton />
-            </Link>
+            <BackButton to={'/vendor/itemsummary'} />
             {
                 image === '' ? (
                     <Box>

@@ -1,6 +1,7 @@
 import { Button, Heading, IconButton, Text } from "@chakra-ui/react";
 import { ArrowBackIcon } from '@chakra-ui/icons'
 import { PropsWithChildren } from "react";
+import { Link } from "react-router-dom";
 
 interface basicStyledProps {
     [key: string]: any
@@ -40,17 +41,19 @@ export const MainButton = ({ children, ...rest }: PropsWithChildren<basicStyledP
 )
 
 export const BackButton = ({ children, ...rest }: PropsWithChildren<basicStyledProps>) => (
-    <IconButton
-        icon={<ArrowBackIcon />}
-        aria-label={'Back'}
-        size={'md'}
-        fontSize={24}
-        borderRadius={'full'}
-        top={10}
-        left={10}
-        position={'fixed'}
-        zIndex={1000}
-        {...rest}
-    />
+    <Link to={rest.to}>
+        <IconButton
+            icon={<ArrowBackIcon />}
+            aria-label={'Back'}
+            size={'md'}
+            fontSize={24}
+            borderRadius={'full'}
+            top={10}
+            left={10}
+            position={'fixed'}
+            zIndex={1000}
+            {...rest}
+        />
+    </Link>
 )
 
