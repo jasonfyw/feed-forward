@@ -54,7 +54,9 @@ const LoginCustomer = () => {
             }
 
             <Center my={'24px'}>
-                <Button variant={'link'}>Create account</Button>
+                <Link to={'/customer/signup'}>
+                    <Button variant={'link'}>Create account</Button>
+                </Link>
             </Center>
 
             <Divider my={'32px'} />
