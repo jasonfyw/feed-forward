@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Input, VStack } from '@chakra-ui/react';
+import { Box, FormControl, FormLabel, Input, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field } from '../../types';
 import { MainButton } from '../basicStyled';
@@ -41,7 +41,7 @@ const UserForm = (props: UserFormProps) => {
     };
 
     return (
-        <Box borderRadius="lg" p="6">
+        <Box borderRadius="lg">
             <form onSubmit={handleSubmit}>
                 <VStack spacing="4">
                     {props.fields.map((field) => (

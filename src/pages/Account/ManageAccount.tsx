@@ -8,16 +8,16 @@ const ManageAccount = () => {
     return (
         <Container pt={['70px', 10]} px={5} h={'100vh'} >
             <StyledHeading>
-                Manage account
+                Account
             </StyledHeading>
 
-            <VStack>
-                
+            <VStack mt={'24px'}>
+                <Text fontWeight={600} fontSize={'12px'} width={'100%'}>Account Settings</Text>
                 <Flex width={'100%'} my={'32px'}>
-                    <Center><Link to={'/signout'}><IconButton aria-label={'Log out'} icon={<FiLogOut/>} mr={'20px'} size={'lg'} bg={'gray.200'} borderRadius={10} padding={2} /></Link></Center>
+                    <Center><Link to={'/signout'}><IconButton aria-label={'Log out'} icon={<FiLogOut/>} mr={'8px'} size={'lg'} bg={'none'} borderRadius={10} padding={0} /></Link></Center>
                     <Center><Link to={'/signout'}><Text fontWeight={600}>Log Out</Text></Link></Center>
                     <Spacer/>
-                    <Center><Link to={'/signout'}><ChevronRightIcon /></Link></Center>
+                    <Center><Link to={'/signout'}><ChevronRightIcon bg={'gray.200'} borderRadius={'full'} /></Link></Center>
                 </Flex>
             </VStack>
         </Container>
