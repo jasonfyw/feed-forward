@@ -67,8 +67,10 @@ function AddItemSummary() {
                     </VStack>
                 )
             }
-
-            <MainButton isDisabled={scannedItems.length === 0 || scannedItems === undefined}>Continue</MainButton>
+            
+            <Link to={'/vendor/itemsummary/delivery'}>
+                <MainButton isDisabled={scannedItems.length === 0 || scannedItems === undefined}>Continue</MainButton>
+            </Link>
         </Container>
     );
 }
