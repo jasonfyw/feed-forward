@@ -59,7 +59,7 @@ const AddItem = () => {
                         />
                         <Center>
                             <Box position={'fixed'} bottom={10} minW={'50vw'}>
-                                <MainButton onClick={capture} w={'100%'} >Capture</MainButton>
+                                <MainButton onClick={capture} w={'100%'} mb={20} >Capture</MainButton>
                             </Box>
                         </Center>
                     </Box>

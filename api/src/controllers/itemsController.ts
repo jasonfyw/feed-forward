@@ -13,6 +13,28 @@ export const getItems = async (req: Request, res: Response) => {
     }
 };
 
+export const getItemsByVendorId = async (req: Request, res: Response) => {
+    const vendorId = req.params.vendorId;
+    console.log(vendorId)
+
+    try {
+        const itemsRef = db.collection('items');
+        const itemsSnapshot = await itemsRef.where('vendorId', '==', vendorId).get();
+
+        // Map the query snapshot to an array of item objects
+        const items: Item[] = [];
+        itemsSnapshot.forEach(doc => {
+            const itemData = doc.data() as Item;
+            items.push({ ...itemData, id: doc.id, });
+        });
+
+        res.status(200).json(items);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error fetching items' });
+    }
+}
+
 export const addItem = async (req: Request, res: Response) => {
     const { name, originalPrice, reducedPrice, description, image, vendorId } = req.body;
 

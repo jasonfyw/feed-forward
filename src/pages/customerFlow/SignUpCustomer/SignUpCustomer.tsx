@@ -37,7 +37,8 @@ const SignUpCustomer = () => {
                     name: stateValues['name'],
                     email: stateValues['email'],
                     roles: ['consumer'],
-                    address: ''
+                    address: '',
+                    id: userCredential.user.uid
                 })
             })
             .catch((error) => {
