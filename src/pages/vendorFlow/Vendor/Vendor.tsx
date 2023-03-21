@@ -13,15 +13,17 @@ const Vendor = () => {
             </StyledHeading>
 
             <Stack>
-                <OptionCard
-                    icon={MdList}
-                    header={'All products'}
-                    description={'View all products currently listed'}
-                    bg={'none'}
-                    border={'1px solid'}
-                    borderColor={'gray.200'}
-                    shadow={'none'}
-                />
+                <Link to={'/vendor/listings'}>
+                    <OptionCard
+                        icon={MdList}
+                        header={'All products'}
+                        description={'View all products currently listed'}
+                        bg={'none'}
+                        border={'1px solid'}
+                        borderColor={'gray.200'}
+                        shadow={'none'}
+                    />
+                </Link>
                 <Link to={'/vendor/itemsummary'}>
                     <OptionCard
                         icon={MdAdd}

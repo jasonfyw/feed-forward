@@ -17,6 +17,7 @@ import { useLocalStorage } from "usehooks-ts";
 import Navbar from "./components/Navbar";
 import Account from "./pages/Account";
 import SignUpCustomer from "./pages/customerFlow/SignUpCustomer";
+import AllListings from "./pages/vendorFlow/AllListings";
 
 export const App = () => {
     const [, setChakraUIColorMode] = useLocalStorage<string>('chakra-ui-color-mode', '')
@@ -37,6 +38,7 @@ export const App = () => {
                     <Route path="/vendor" element={<Vendor />} />
                     <Route path="/vendor/itemsummary" element={<AddItemSummary />} />
                     <Route path="/vendor/itemsummary/delivery" element={<AddItemDelivery />} />
+                    <Route path="/vendor/listings" element={<AllListings />} />
 
                     <Route path="/account" element={<Account />} />
 
